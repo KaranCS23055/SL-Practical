@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Currency Converter</title>
+    <script>
+        // Function to convert currency
+        function convertCurrency() {
+            const amount = parseFloat(document.getElementById("amount").value);
+            const currency = document.getElementById("currency").value;
+            let result;
+
+            // Hard-coded exchange rates
+            const exchangeRates = {
+                EUR: 0.85, // Example rate: 1 USD = 0.85 EUR
+                JPY: 110.00 // Example rate: 1 USD = 110.00 JPY
+            };
+
+            // Validate the amount input
+            if (isNaN(amount) || amount <= 0) {
+                document.getElementById("result").textContent = "Please enter a valid amount.";
+                return;
+            }
+
+            // Perform the conversion
+            if (currency in exchangeRates) {
+                result = amount * exchangeRates[currency];
+                document.getElementById("result").textContent = `${amount} USD = ${result.toFixed(2)} ${currency}`;
+            } else {
+                document.getElementById("result").textContent = "Please select a target currency.";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Currency Converter</h2>
+    <form>
+        <label for="amount">Amount in USD:</label>
+        <input type="number" id="amount" placeholder="Enter amount in USD" min="0" required>
+        <br><br>
+
+        <label for="currency">Select Target Currency:</label>
+        <select id="currency">
+            <option value="">--Select Currency--</option>
+            <option value="EUR">EUR (Euro)</option>
+            <option value="JPY">JPY (Japanese Yen)</option>
+        </select>
+        <br><br>
+
+        <button type="button" onclick="convertCurrency()">Convert</button>
+    </form>
+
+    <p id="result"></p>
+</body>
+</html>

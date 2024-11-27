@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Contact Us</title>
+</head>
+<body>
+  <h1>Contact Us</h1>
+  <form id="contactForm">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" placeholder="Your Name"><br>
+    <span id="nameError" style="color: red;"></span><br>
+
+    <label for="email">Email:</label><br>
+    <input type="text" id="email" placeholder="Your Email"><br>
+    <span id="emailError" style="color: red;"></span><br>
+
+    <label for="subject">Subject:</label><br>
+    <input type="text" id="subject" placeholder="Subject"><br>
+    <span id="subjectError" style="color: red;"></span><br>
+
+    <label for="message">Message:</label><br>
+    <textarea id="message" placeholder="Your Message"></textarea><br>
+    <span id="messageError" style="color: red;"></span><br>
+
+    <button type="button" onclick="validateForm()">Submit</button>
+  </form>
+  <p id="successMessage" style="color: green;"></p>
+
+  <script>
+    function validateForm() {
+      // Clear previous error messages
+      document.getElementById('nameError').textContent = '';
+      document.getElementById('emailError').textContent = '';
+      document.getElementById('subjectError').textContent = '';
+      document.getElementById('messageError').textContent = '';
+      document.getElementById('successMessage').textContent = '';
+
+      // Get input values
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      let isValid = true;
+
+      // Name validation
+      if (!name) {
+        document.getElementById('nameError').textContent = 'Name is required.';
+        isValid = false;
+      }
+
+      // Email validation
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email) {
+        document.getElementById('emailError').textContent = 'Email is required.';
+        isValid = false;
+      } else if (!emailPattern.test(email)) {
+        document.getElementById('emailError').textContent = 'Enter a valid email.';
+        isValid = false;
+      }
+
+      // Subject validation
+      if (!subject) {
+        document.getElementById('subjectError').textContent = 'Subject is required.';
+        isValid = false;
+      }
+
+      // Message validation
+      if (!message) {
+        document.getElementById('messageError').textContent = 'Message is required.';
+        isValid = false;
+      }
+
+      // Success message
+      if (isValid) {
+        document.getElementById('successMessage').textContent = 'Form submitted successfully!';
+        document.getElementById('contactForm').reset();
+      }
+    }
+  </script>
+</body>
+</html>

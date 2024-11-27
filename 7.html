@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Swap Two Numbers</title>
+    <script>
+        // Function to swap two numbers
+        function swapNumbers() {
+            // Get the values entered by the user
+            var num1 = parseFloat(document.getElementById("number1").value);
+            var num2 = parseFloat(document.getElementById("number2").value);
+
+            // Swap the numbers
+            var temp = num1;
+            num1 = num2;
+            num2 = temp;
+
+            // Display the swapped values
+            document.getElementById("result").textContent = "After Swapping: First Number = " + num1 + ", Second Number = " + num2;
+        }
+    </script>
+</head>
+<body>
+    <h2>Swap Two Numbers</h2>
+    <p>Enter two numbers to swap them:</p>
+
+    <!-- Input fields for the numbers -->
+    <input type="number" id="number1" placeholder="Enter first number">
+    <input type="number" id="number2" placeholder="Enter second number">
+
+    <!-- Button to trigger the swap -->
+    <button onclick="swapNumbers()">Swap</button>
+
+    <!-- Paragraph to display the result -->
+    <p id="result"></p>
+</body>
+</html>

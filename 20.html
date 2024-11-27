@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsletter Signup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .form-container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .form-container h2 {
+            text-align: center;
+        }
+        .form-container label {
+            display: block;
+            margin-top: 10px;
+        }
+        .form-container input, .form-container button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Newsletter Signup</h2>
+        <form id="signupForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            <div id="emailError" class="error"></div>
+            
+            <label>Topics of Interest:</label>
+            <input type="checkbox" id="topicTech" name="topics" value="Technology"> Technology<br>
+            <input type="checkbox" id="topicScience" name="topics" value="Science"> Science<br>
+            <input type="checkbox" id="topicHealth" name="topics" value="Health"> Health<br>
+            <div id="topicsError" class="error"></div>
+            
+            <button type="submit">Subscribe</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('signupForm');
+        const emailError = document.getElementById('emailError');
+        const topicsError = document.getElementById('topicsError');
+
+        form.addEventListener('submit', (event) => {
+            let isValid = true;
+            emailError.textContent = '';
+            topicsError.textContent = '';
+
+            // Validate email
+            const email = document.getElementById('email').value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                emailError.textContent = 'Please enter a valid email address.';
+                isValid = false;
+            }
+
+            // Validate at least one topic selected
+            const topics = document.querySelectorAll('input[name="topics"]:checked');
+            if (topics.length === 0) {
+                topicsError.textContent = 'Please select at least one topic of interest.';
+                isValid = false;
+            }
+
+            // Prevent form submission if validation fails
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sum of Natural Numbers</title>
+    <script>
+        // Function to calculate the sum of natural numbers
+        function sumOfNaturalNumbers() {
+            const number = parseInt(document.getElementById("number").value);
+            let sum = 0;
+
+            // Check if the input is a positive integer
+            if (number < 1) {
+                document.getElementById("result").textContent = "Please enter a positive integer.";
+                return;
+            }
+
+            // Calculate the sum of natural numbers
+            for (let i = 1; i <= number; i++) {
+                sum += i; // Add each number to the sum
+            }
+
+            // Display the result
+            document.getElementById("result").textContent = "The sum of natural numbers up to " + number + " is " + sum + ".";
+        }
+    </script>
+</head>
+<body>
+    <h2>Sum of Natural Numbers</h2>
+    <p>Enter a positive integer:</p>
+
+    <!-- Input field for the number -->
+    <input type="number" id="number" placeholder="Enter a number" min="1">
+
+    <!-- Button to trigger the sum calculation -->
+    <button onclick="sumOfNaturalNumbers()">Calculate Sum</button>
+
+    <!-- Paragraph to display the result -->
+    <p id="result"></p>
+</body>
+</html>

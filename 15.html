@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Repayment Calculator</title>
+    <script>
+        // Function to calculate monthly payment
+        function calculateMonthlyPayment() {
+            const loanAmount = parseFloat(document.getElementById("loanAmount").value);
+            const annualRate = parseFloat(document.getElementById("annualRate").value) / 100;
+            const loanTerm = parseFloat(document.getElementById("loanTerm").value) * 12; // Convert years to months
+            
+            // Validate inputs
+            if (isNaN(loanAmount) || isNaN(annualRate) || isNaN(loanTerm) || loanAmount <= 0 || annualRate <= 0 || loanTerm <= 0) {
+                document.getElementById("result").textContent = "Please enter valid positive numbers.";
+                return;
+            }
+
+            // Calculate monthly interest rate
+            const monthlyRate = annualRate / 12;
+
+            // Calculate monthly payment using the formula
+            const monthlyPayment = (loanAmount * monthlyRate) / (1 - Math.pow((1 + monthlyRate), -loanTerm));
+
+            // Display the result
+            document.getElementById("result").textContent = "Monthly Payment: $" + monthlyPayment.toFixed(2);
+        }
+    </script>
+</head>
+<body>
+    <h2>Loan Repayment Calculator</h2>
+    <form>
+        <label for="loanAmount">Loan Amount ($):</label><br>
+        <input type="number" id="loanAmount" placeholder="Enter loan amount" min="0" required><br><br>
+        
+        <label for="annualRate">Annual Interest Rate (%):</label><br>
+        <input type="number" id="annualRate" placeholder="Enter interest rate" min="0" required><br><br>
+        
+        <label for="loanTerm">Loan Term (years):</label><br>
+        <input type="number" id="loanTerm" placeholder="Enter loan term in years" min="1" required><br><br>
+
+        <!-- Button to trigger the calculation -->
+        <button type="button" onclick="calculateMonthlyPayment()">Calculate Monthly Payment</button>
+    </form>
+
+    <!-- Paragraph to display the result -->
+    <p id="result"></p>
+</body>
+</html>
+

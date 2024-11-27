@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Interest Calculator</title>
+    <script>
+        // Function to calculate simple interest
+        function calculateSimpleInterest() {
+            // Get values from input fields
+            const principal = parseFloat(document.getElementById("principal").value);
+            const annualRate = parseFloat(document.getElementById("annualRate").value);
+            const time = parseFloat(document.getElementById("time").value);
+
+            // Validate inputs
+            if (isNaN(principal) || isNaN(annualRate) || isNaN(time) || principal < 0 || annualRate < 0 || time < 0) {
+                document.getElementById("result").textContent = "Please enter valid positive numbers.";
+                return;
+            }
+
+            // Calculate simple interest
+            const simpleInterest = (principal * annualRate * time) / 100;
+
+            // Display the result
+            document.getElementById("result").textContent = "Simple Interest: $" + simpleInterest.toFixed(2);
+        }
+    </script>
+</head>
+<body>
+    <h2>Simple Interest Calculator</h2>
+    <form>
+        <label for="principal">Principal Amount ($):</label><br>
+        <input type="number" id="principal" placeholder="Enter principal amount" min="0" required><br><br>
+        
+        <label for="annualRate">Annual Interest Rate (%):</label><br>
+        <input type="number" id="annualRate" placeholder="Enter annual interest rate" min="0" required><br><br>
+        
+        <label for="time">Time (in years):</label><br>
+        <input type="number" id="time" placeholder="Enter time in years" min="0" required><br><br>
+
+        <!-- Button to trigger the calculation -->
+        <button type="button" onclick="calculateSimpleInterest()">Calculate Simple Interest</button>
+    </form>
+
+    <!-- Paragraph to display the result -->
+    <p id="result"></p>
+</body>
+</html>
